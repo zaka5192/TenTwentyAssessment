@@ -28,7 +28,7 @@ const DetailsScreen: React.FC<T_DETAILS_ROUTE_PARAMS> = ({navigation, route}) =>
     }
     if (movieDetails && movieDetails.videos && movieDetails.videos.results && movieDetails.videos.results.length) {
       setTrailerUrl('https://res.cloudinary.com/dxq9ddyd0/video/upload/v1721651377/samples/elephants.mp4');
-      setIsPaused(false);
+      // setIsPaused(false);
     }
   }, [movieDetails]);
 
