@@ -11,6 +11,8 @@ export type T_APP_COLORS = {
   tmdbText: string;
   white: string;
   black: string;
+  inputBg: string;
+  inputBorder: string;
 };
 
 export type T_SPACING = {

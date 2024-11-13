@@ -5,9 +5,11 @@ import {T_HOME} from './home.types';
 import {styles} from './home.styles';
 import {getImageUrl} from '../../config/utils';
 import {images} from '../../assets/images';
+// import useAppTheme from '../../hooks/useAppTheme';
 import {useGetUpcomingMoviesAPI} from '../../api/public';
 
 const Home: React.FC<T_HOME> = ({navigation}) => {
+  // const {colors} = useAppTheme();
 
   const {data: moviesData} = useGetUpcomingMoviesAPI();
 
@@ -15,6 +17,10 @@ const Home: React.FC<T_HOME> = ({navigation}) => {
     navigation.navigate('DetailsScreen', {
       movie: item,
     })
+  };
+
+  const handleSearchPress = () => {
+    navigation.navigate('SearchScreen');
   };
 
   const renderMovieCard = (movie: any) => {
@@ -32,7 +38,7 @@ const Home: React.FC<T_HOME> = ({navigation}) => {
     <ScreenWrapper>
       <View style={styles.headerTextContainer}>
         <Text style={styles.headerText}>Watch</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleSearchPress}>
           <Image style={styles.searchIcon} source={images.Search} />
         </TouchableOpacity>
       </View>

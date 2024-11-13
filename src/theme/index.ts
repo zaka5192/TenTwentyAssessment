@@ -6,6 +6,7 @@ import {
   hp,
   fontPixel,
   fullHeight,
+  fullWidth,
   pixelSizeHorizontal,
   pixelSizeVertical,
 } from './responsive';
@@ -14,6 +15,7 @@ export {
   appSpacings,
   appRadius,
   fullHeight,
+  fullWidth,
   appIconSizes,
   typography,
   wp as WP,

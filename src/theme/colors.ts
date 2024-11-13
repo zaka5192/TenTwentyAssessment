@@ -13,4 +13,6 @@ export const appColors: T_APP_COLORS = {
   tmdbText: '#202C43',
   white: '#FFFFFF',
   black: '#000000',
+  inputBg: '#F2F2F6',
+  inputBorder: '#EFEFEF',
 };

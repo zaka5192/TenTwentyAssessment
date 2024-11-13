@@ -10,6 +10,7 @@ export const axiosClient = axios.create({
 axiosClient.interceptors.request.use(
   async (config: InternalAxiosRequestConfig<any>) => {
     // Code for Headers to be set here
+    // console.log('url: https://api.themoviedb.org/3/', config.url);
     return config;
   },
   (error: any) => {
@@ -26,13 +27,7 @@ axiosClient.interceptors.response.use(
   },
   (error: any) => {
     // console.log('error in axios File: ', error);
-    if (error.response.status === 406) {
-      showToast(
-        'Approval Pending',
-        error.response.data?.message || 'Something went wrong',
-        'success',
-      );
-    } else if (error.response.data?.message) {
+    if (error.response.data?.message) {
       showToast(
         'Error',
         error.response.data?.message || 'Something went wrong',

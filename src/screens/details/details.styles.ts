@@ -79,6 +79,16 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     marginVertical: pixelSizeVertical(appSpacings[2]),
   },
+  closeBtn: {
+    alignSelf: 'flex-end',
+    marginHorizontal: pixelSizeHorizontal(appSpacings[3]),
+  },
+  pausePlayBtn: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+  },
   watchBtn: {
     position: 'absolute',
     bottom: HP(30),

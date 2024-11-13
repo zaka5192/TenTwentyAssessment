@@ -1,13 +1,14 @@
-import React, {useEffect, useMemo, useState} from 'react';
-import {View, Text, Image, Modal, Alert, Platform, ActivityIndicator, ImageBackground, TouchableOpacity} from 'react-native';
+import React, {useEffect, useMemo, useState, useCallback} from 'react';
+import {View, Text, Image, Modal, Alert, ImageBackground, TouchableOpacity} from 'react-native';
 import {ScreenWrapper, KeyboardAwareView, AppButton} from '../../components';
+import YoutubePlayer from "react-native-youtube-iframe";
 import {T_DETAILS_ROUTE_PARAMS} from './details.types';
 import {styles} from './details.styles';
 import {images} from '../../assets/images';
 import Video from "react-native-video";
 import {getImageUrl, getGenreColor} from '../../config/utils';
 import {useGetMovieDetailsAPI} from '../../api/public';
-import {appColors} from '../../theme';
+import {appColors, fullWidth} from '../../theme';
 
 const DetailsScreen: React.FC<T_DETAILS_ROUTE_PARAMS> = ({navigation, route}) => {
 
@@ -17,8 +18,7 @@ const DetailsScreen: React.FC<T_DETAILS_ROUTE_PARAMS> = ({navigation, route}) =>
   // console.log('movieDetails: ', movieDetails);
 
   const [genres, setGenres] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isPaused, setIsPaused] = useState<boolean>(true);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [trailelUrl, setTrailerUrl] = useState<string>('');
   const [showVideoModal, setShowVideoModal] = useState<boolean>(false);
 
@@ -27,7 +27,9 @@ const DetailsScreen: React.FC<T_DETAILS_ROUTE_PARAMS> = ({navigation, route}) =>
       setGenres(movieDetails.genres);
     }
     if (movieDetails && movieDetails.videos && movieDetails.videos.results && movieDetails.videos.results.length) {
-      setTrailerUrl('https://res.cloudinary.com/dxq9ddyd0/video/upload/v1721651377/samples/elephants.mp4');
+      setTrailerUrl(movieDetails.videos.results[0].key);
+      setIsPlaying(true);
+      // setTrailerUrl('https://res.cloudinary.com/dxq9ddyd0/video/upload/v1721651377/samples/elephants.mp4');
       // setIsPaused(false);
     }
   }, [movieDetails]);
@@ -35,6 +37,17 @@ const DetailsScreen: React.FC<T_DETAILS_ROUTE_PARAMS> = ({navigation, route}) =>
   const handleBackPress = () => {
     navigation.goBack();
   };
+
+  const onStateChange = useCallback((state: any) => {
+    if (state === "ended") {
+      setIsPlaying(false);
+      Alert.alert("video has finished playing!");
+    }
+  }, []);
+
+  const togglePlaying = useCallback(() => {
+    setIsPlaying((prev) => !prev);
+  }, []);
 
   const renderGenres = useMemo(() => {
     return (
@@ -93,29 +106,22 @@ const DetailsScreen: React.FC<T_DETAILS_ROUTE_PARAMS> = ({navigation, route}) =>
       {!showVideoModal ? null : (
         <Modal visible={showVideoModal} onRequestClose={() => setShowVideoModal(false)} animationType="slide">
           <ScreenWrapper>
-            <TouchableOpacity onPress={() => setShowVideoModal(false)}>
-              <Text>
-                Done
-              </Text>
-            </TouchableOpacity>
+            <AppButton
+              style={styles.closeBtn}
+              width={'30%'}
+              buttonTitle='Close'
+              backgroundColor={appColors.tmdbPurple}
+              onPress={() => setShowVideoModal(false)}
+            />
             <View style={styles.infoContainer}>
-            {isLoading && (
-                <View style={styles.main}>
-                  <ActivityIndicator size={"large"} color={appColors.white} />
-                </View>
-              )}
-              {
-                (isPaused || Platform.OS === "android") &&
-                <TouchableOpacity onPress={() => setIsPaused(!isPaused)}>
-                  <View style={styles.pausedView}>
-                    {
-                      isPaused && !isLoading &&
-                      <Text style={styles.genreText}>Resume</Text>
-                    }
-                  </View>
-                </TouchableOpacity>
-              }
-              <Video
+              <YoutubePlayer
+                height={300}
+                width={fullWidth}
+                play={isPlaying}
+                videoId={trailelUrl}
+                onChangeState={onStateChange}
+              />
+              {/* <Video
                 onLoadStart={() => setIsLoading(true)}
                 onLoad={() => setIsLoading(false)}
                 source={{uri: trailelUrl}}
@@ -131,8 +137,15 @@ const DetailsScreen: React.FC<T_DETAILS_ROUTE_PARAMS> = ({navigation, route}) =>
                 fullscreen={true}
                 resizeMode="contain"
                 style={styles.videoContainer}
-              />
+              /> */}
             </View>
+            <AppButton
+              style={styles.pausePlayBtn}
+              width={'90%'}
+              buttonTitle={isPlaying ? 'Pause' : 'Resume'}
+              backgroundColor={appColors.tmdbGold}
+              onPress={togglePlaying}
+            />
           </ScreenWrapper>
         </Modal>
       )}

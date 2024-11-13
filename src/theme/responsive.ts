@@ -35,4 +35,13 @@ const pixelSizeHorizontal = (size: number) => {
 };
 //for full screen Height
 const fullHeight = screenHeight;
-export {wp, hp, fontPixel, pixelSizeVertical, pixelSizeHorizontal, fullHeight};
+const fullWidth = screenWidth;
+export {
+  wp,
+  hp,
+  fontPixel,
+  pixelSizeVertical,
+  pixelSizeHorizontal,
+  fullHeight,
+  fullWidth,
+};

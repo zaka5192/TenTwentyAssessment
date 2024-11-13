@@ -17,6 +17,14 @@ export const typography = {
     },
   },
   MEDIUM: {
+    F_10: {
+      fontFamily: FONT_VARIANTS.MEDIUM,
+      fontSize: fontPixel(10),
+    },
+    F_14: {
+      fontFamily: FONT_VARIANTS.MEDIUM,
+      fontSize: fontPixel(14),
+    },
     F_16: {
       fontFamily: FONT_VARIANTS.MEDIUM,
       fontSize: fontPixel(16),
@@ -27,9 +35,21 @@ export const typography = {
     },
   },
   REGULAR: {
+    F_10: {
+      fontFamily: FONT_VARIANTS.REGULAR,
+      fontSize: fontPixel(10),
+    },
     F_12: {
       fontFamily: FONT_VARIANTS.REGULAR,
       fontSize: fontPixel(12),
+    },
+    F_14: {
+      fontFamily: FONT_VARIANTS.REGULAR,
+      fontSize: fontPixel(14),
+    },
+    F_16: {
+      fontFamily: FONT_VARIANTS.REGULAR,
+      fontSize: fontPixel(16),
     },
   },
   BOLD: {

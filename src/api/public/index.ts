@@ -30,3 +30,11 @@ export const useGetMovieImagesAPI = (movieId: number) => {
       ),
   });
 };
+
+export const useGetGenresAPI = () => {
+  return useQuery({
+    queryKey: ['genresAPI'],
+    queryFn: async (): Promise<any> =>
+      await axiosClient.get(`${ROUTES.GENRES}?api_key=${envConfig.API_KEY}`),
+  });
+};
