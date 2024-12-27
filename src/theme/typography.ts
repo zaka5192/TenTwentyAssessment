@@ -21,6 +21,10 @@ export const typography = {
       fontFamily: FONT_VARIANTS.MEDIUM,
       fontSize: fontPixel(10),
     },
+    F_12: {
+      fontFamily: FONT_VARIANTS.MEDIUM,
+      fontSize: fontPixel(12),
+    },
     F_14: {
       fontFamily: FONT_VARIANTS.MEDIUM,
       fontSize: fontPixel(14),
@@ -32,6 +36,10 @@ export const typography = {
     F_18: {
       fontFamily: FONT_VARIANTS.MEDIUM,
       fontSize: fontPixel(18),
+    },
+    F_24: {
+      fontFamily: FONT_VARIANTS.MEDIUM,
+      fontSize: fontPixel(24),
     },
   },
   REGULAR: {

@@ -15,13 +15,13 @@ const ScreenWrapper: React.FC<T_SCREEN_WRAPPER> = ({children}) => {
   const insets = useSafeAreaInsets();
 
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider style={{backgroundColor: '#2DA5FE'}}>
       <View
         // entering={FadeInDown.duration(300)}
         style={[
           globalStyles.flexContainer,
           {
-            backgroundColor: colors.white,
+            backgroundColor: '#2DA5FE',
             paddingTop: Platform.OS === 'ios' ? insets.top : WP(20),
           },
         ]}>

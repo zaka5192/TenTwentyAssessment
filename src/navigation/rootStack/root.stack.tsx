@@ -13,7 +13,7 @@ const RootStack = () => {
 
   return (
     <NavigationContainer>
-      <StatusBar backgroundColor={colors.white} barStyle={'dark-content'} />
+      <StatusBar backgroundColor={'#2DA5FE'} barStyle={'dark-content'} />
       <Stack.Navigator
         initialRouteName="TabStack"
         screenOptions={{

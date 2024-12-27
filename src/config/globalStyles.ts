@@ -26,21 +26,21 @@ export const globalStyles = StyleSheet.create({
     textAlign: 'center',
   },
   tabBarStyle: {
-    backgroundColor: appColors.tmdbBlack,
-    borderTopLeftRadius: HP(35),
-    borderTopRightRadius: HP(35),
+    backgroundColor: 'white',
     height: HP(85),
+    borderTopWidth: 1,
+    borderTopColor: '#F5F9FC',
     paddingHorizontal: pixelSizeHorizontal(appSpacings[1]),
     paddingVertical: pixelSizeVertical(appSpacings[2]),
   },
   tabTextSelected: {
     ...typography.MEDIUM.F_10,
-    color: appColors.white,
+    color: '#2C8BFD',
     marginTop: 5,
   },
   tabText: {
     ...typography.REGULAR.F_10,
-    color: appColors.tmdbGrey,
+    color: '#787381',
     marginTop: 5,
   },
   tabContainer: {
